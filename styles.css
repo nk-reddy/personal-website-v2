@@ -26,6 +26,168 @@
   font-size: 0.75em;
 }
 
+/* The masthead is a single flex row: the nav grows to fill it and the theme
+   toggle rides at the end, centred against the links at every viewport size.
+   The toggle used to be absolutely positioned at a fixed 0.5rem offset, which
+   drifted out of the row once the root font-size steps up at 48em. */
+.masthead__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.masthead__menu .greedy-nav {
+  flex: 1 1 auto;
+  /* Drop the theme's 250px floor so the nav can shrink and let greedy-nav
+     collapse links into the dropdown instead of running under the toggle. */
+  min-width: 0;
+}
+
+.theme-toggle-anchor {
+  flex: 0 0 auto;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* tap target on touch devices; still inside the nav row */
+  margin: 0;
+  padding: 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: #7a8288;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9em;
+  line-height: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: #52adc8;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #52adc8;
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background-color: #202428;
+  color: #d9dee1;
+}
+
+html[data-theme="dark"] .masthead,
+html[data-theme="dark"] .greedy-nav,
+html[data-theme="dark"] .greedy-nav .hidden-links {
+  background-color: #202428;
+}
+
+html[data-theme="dark"] .masthead a,
+html[data-theme="dark"] a {
+  color: #75c5dc;
+}
+
+html[data-theme="dark"] .masthead a:hover,
+html[data-theme="dark"] a:hover {
+  color: #a1ddea;
+}
+
+html[data-theme="dark"] .page__title,
+html[data-theme="dark"] .author__name,
+html[data-theme="dark"] .author__bio,
+html[data-theme="dark"] .writing-article-title,
+html[data-theme="dark"] .writing-year-heading,
+html[data-theme="dark"] .reading-section-label,
+html[data-theme="dark"] .read-year-heading {
+  color: #d9dee1;
+}
+
+html[data-theme="dark"] .writing-article-meta,
+html[data-theme="dark"] .writing-back-link,
+html[data-theme="dark"] .reading-back-link,
+html[data-theme="dark"] .writing-page .writing-year-heading {
+  color: #aeb8bd;
+}
+
+html[data-theme="dark"] .theme-toggle {
+  color: #aeb8bd;
+}
+
+html[data-theme="dark"] .theme-toggle:hover,
+html[data-theme="dark"] .theme-toggle:focus-visible {
+  color: #ffe9a0;
+}
+
+html[data-theme="dark"] .site-footer {
+  border-top-color: #343b40;
+}
+
+html[data-theme="dark"] .masthead {
+  border-bottom-color: #343b40;
+}
+
+@media (max-width: 48em) {
+  .masthead__menu {
+    gap: 0.75rem;
+  }
+
+  /* Put the hamburger at the far right edge with the theme toggle inside it,
+     i.e. "NIKHIL REDDY ... dark  [=]". The button and dropdown are anchored to
+     .greedy-nav by the theme; dropping the nav to static re-anchors both to the
+     full masthead row so they sit at its right edge rather than the nav's. */
+  .masthead__menu {
+    position: relative;
+  }
+
+  .greedy-nav {
+    position: static;
+  }
+
+  .theme-toggle-anchor {
+    margin-right: 3.5rem; /* clears the 44px hamburger */
+  }
+
+  /* Every page link lives in the dropdown on mobile (see layoutNav in
+     script.js), so give the panel a comfortable width and tap targets. */
+  .greedy-nav .hidden-links {
+    min-width: 11rem;
+    margin-top: 0.75rem;
+  }
+
+  .greedy-nav .hidden-links a {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95em;
+  }
+}
+
+/* The theme only ever styled this dropdown for light mode: the pointer arrow
+   is hard-coded #fff and the separators #f2f3f3, which glare against dark. */
+html[data-theme="dark"] .greedy-nav .hidden-links {
+  border-color: #343b40;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .greedy-nav .hidden-links li {
+  border-bottom-color: #343b40;
+}
+
+html[data-theme="dark"] .greedy-nav .hidden-links:before {
+  border-color: #343b40 transparent;
+}
+
+html[data-theme="dark"] .greedy-nav .hidden-links:after {
+  border-color: #202428 transparent;
+}
+
+html[data-theme="dark"] .greedy-nav .hidden-links a:hover {
+  background: #2b3136;
+  color: #a1ddea;
+}
+
 #main.layout-reading .reading-sidebar {
   display: none;
 }

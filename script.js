@@ -18,6 +18,116 @@
 	var inFlight = new Map();
 	var readingLoadPromise = null;
 	var writingLoadPromise = null;
+	var THEME_STORAGE_KEY = "personal-website-theme";
+
+	function storedTheme() {
+		try {
+			return window.localStorage.getItem(THEME_STORAGE_KEY);
+		} catch (error) {
+			return null;
+		}
+	}
+
+	function rememberTheme(theme) {
+		try {
+			window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+		} catch (error) {
+			/* Storage unavailable; the toggle still works for this page view. */
+		}
+	}
+
+	function preferredTheme() {
+		var theme = storedTheme();
+		if (theme === "light" || theme === "dark") return theme;
+
+		return "light";
+	}
+
+	function applyTheme(theme) {
+		document.documentElement.dataset.theme = theme;
+
+		document.querySelectorAll(".theme-toggle").forEach(function (button) {
+			var darkMode = theme === "dark";
+			button.textContent = darkMode ? "light" : "dark";
+			button.setAttribute("aria-pressed", String(darkMode));
+			button.setAttribute("aria-label", darkMode ? "Switch to light mode" : "Switch to dark mode");
+			button.setAttribute("title", darkMode ? "Switch to light mode" : "Switch to dark mode");
+		});
+	}
+
+	function initializeTheme() {
+		applyTheme(preferredTheme());
+
+		document.addEventListener("click", function (event) {
+			var toggle = event.target.closest(".theme-toggle");
+			if (!toggle) return;
+
+			var nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+			rememberTheme(nextTheme);
+			applyTheme(nextTheme);
+		});
+	}
+
+	var NAV_MOBILE_QUERY = "(max-width: 48em)";
+	var navItems = null;
+
+	/*
+	 * The theme's greedy-nav collapses links one at a time as the bar runs out of
+	 * room, which on a phone left the masthead half-collapsed: brand + "Reading"
+	 * in the bar and only "Writing" in the dropdown. Drive the split off the
+	 * breakpoint instead -- on mobile every page link lives in the dropdown, on
+	 * desktop they all sit in the bar. main.min.js loads first, so this resize
+	 * handler runs after greedy-nav's and gets the final say on the arrangement.
+	 */
+	function layoutNav() {
+		var visibleLinks = document.querySelector("#site-nav .visible-links");
+		var hiddenLinks = document.querySelector("#site-nav .hidden-links");
+		var navButton = document.querySelector("#site-nav > button");
+		if (!visibleLinks || !hiddenLinks || !navButton) return;
+
+		if (!navItems) {
+			// greedy-nav has already run by now, and it collapses links by moving the
+			// last visible item to the front of the dropdown -- so the dropdown always
+			// holds the tail of the original list, in order. Concatenating the two
+			// lists recovers the authored order regardless of how much it collapsed.
+			navItems = Array.prototype.slice
+				.call(visibleLinks.children)
+				.concat(Array.prototype.slice.call(hiddenLinks.children));
+		}
+
+		var mobile = window.matchMedia(NAV_MOBILE_QUERY).matches;
+
+		navItems.forEach(function (item, index) {
+			// Index 0 is the site title; it stays in the bar as the home link.
+			var target = mobile && index > 0 ? hiddenLinks : visibleLinks;
+			// Append unconditionally rather than only when the parent changes:
+			// greedy-nav collapses links by prepending them, so an item can be in
+			// the right list in the wrong order. Re-appending in index order fixes
+			// placement and order in one pass.
+			target.appendChild(item);
+		});
+
+		navButton.classList.toggle("hidden", !mobile);
+		if (!mobile) closeNavMenu();
+	}
+
+	function closeNavMenu() {
+		var hiddenLinks = document.querySelector("#site-nav .hidden-links");
+		var navButton = document.querySelector("#site-nav > button");
+		if (hiddenLinks) hiddenLinks.classList.add("hidden");
+		if (navButton) navButton.classList.remove("close");
+	}
+
+	function initializeNav() {
+		layoutNav();
+		window.addEventListener("resize", layoutNav);
+
+		// Dismiss the dropdown once a link in it is taken (navigation is in-page,
+		// so nothing else would close the menu).
+		document.addEventListener("click", function (event) {
+			if (event.target.closest("#site-nav .hidden-links a")) closeNavMenu();
+		});
+	}
 
 	function normalizedPath(url) {
 		var resolved = new URL(url, window.location.href);
@@ -773,6 +883,8 @@
 		});
 	}
 
+	initializeTheme();
+	initializeNav();
 	seedCurrentPage();
 	hydratePageFeatures(window.location.href);
 
