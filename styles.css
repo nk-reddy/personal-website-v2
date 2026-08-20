@@ -1,9 +1,10 @@
 .site-footer {
   max-width: 1280px;
-  margin: 4.5em auto 2em;
-  padding: 1.5em 1em 0;
+  margin: 2.25em auto 1em;
+  padding: 0.5em 1em 0;
   border-top: 1px solid #f2f3f3;
   text-align: center;
+  line-height: 1.2;
 }
 
 .site-footer a {
@@ -16,10 +17,258 @@
 }
 
 .site-footer i {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .site-footer p {
-  margin: 0.5em 0 0;
-  font-size: 0.8em;
+  display: inline;
+  margin: 0 0 0 0.35em;
+  font-size: 0.75em;
+}
+
+#main.layout-reading .reading-sidebar {
+  display: none;
+}
+
+#main.layout-reading .sidebar {
+  display: none;
+}
+
+#main.layout-reading .reading-page {
+  float: none;
+  width: 100%;
+  margin: 0;
+  padding-right: 0;
+}
+
+#main.layout-reading .reading-page .page__inner-wrap {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.reading-page .page__title {
+  margin-bottom: 0.25em;
+  margin-left: calc(12rem + 1.25rem);
+}
+
+.reading-page .reading-back-link {
+  color: #494e52;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.reading-page .reading-back-link:hover {
+  color: #52adc8;
+}
+
+.reading-page #reading-list-root {
+  margin-top: 1.25em;
+}
+
+.reading-page .reading-section {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  column-gap: 1.25rem;
+  align-items: start;
+  margin: 1em 0 1.35em;
+}
+
+.reading-page .reading-section-label {
+  margin: 0;
+  font-size: 1.05em;
+  color: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  font-weight: 700;
+}
+
+.reading-page .reading-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-column: 2;
+}
+
+.reading-page .reading-items li {
+  margin: 0.2em 0;
+  font-family: inherit;
+}
+
+.reading-page .read-section .read-groups {
+  grid-column: 1 / -1;
+  margin-top: 0.1em;
+}
+
+.reading-page .read-section .read-year-group {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  column-gap: 1.25rem;
+  align-items: start;
+  margin: 0.15em 0 0.95em;
+}
+
+.reading-page .read-section .read-year-heading {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.reading-page .read-section .read-year-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reading-page .read-section .read-year-items li {
+  margin: 0.2em 0;
+  font-family: inherit;
+}
+
+@media (max-width: 48em) {
+  .reading-page .page__title {
+    margin-left: 0;
+  }
+
+  .reading-page .reading-section {
+    grid-template-columns: 1fr;
+    row-gap: 0.35em;
+  }
+
+  .reading-page .reading-items {
+    grid-column: 1;
+  }
+
+  .reading-page .read-section .read-year-group {
+    grid-template-columns: 1fr;
+    row-gap: 0.35em;
+    margin-bottom: 0.75em;
+  }
+}
+
+#main.layout-writing .writing-sidebar {
+  display: none;
+}
+
+#main.layout-writing .sidebar {
+  display: none;
+}
+
+#main.layout-writing .writing-page {
+  float: none;
+  width: 100%;
+  margin: 0;
+  padding-right: 0;
+}
+
+#main.layout-writing .writing-page .page__inner-wrap {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.writing-page .page__title {
+  margin-bottom: 0.25em;
+  margin-left: calc(12rem + 1.25rem);
+}
+
+.writing-page .writing-back-link {
+  color: #494e52;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.writing-page .writing-back-link:hover {
+  color: #52adc8;
+}
+
+.writing-page #writing-list-root {
+  margin-top: 1.25em;
+  margin-left: 0;
+}
+
+.writing-page .writing-year-group {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  column-gap: 1.25rem;
+  align-items: start;
+  margin: 0.2em 0 1em;
+}
+
+.writing-page .writing-year-heading {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.writing-page .writing-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.writing-page .writing-items li {
+  margin: 0.2em 0;
+  font-family: inherit;
+}
+
+.writing-post-page .writing-article-title {
+  max-width: 42rem;
+  margin: 0 0 1em;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: #494e52;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.writing-post-page .writing-article-meta {
+  margin: 0 0 2.5em;
+  max-width: 42rem;
+  margin-left: calc(12rem + 1.25rem);
+  color: #7a8288;
+  font-size: 0.9em;
+}
+
+.writing-post-page .writing-article-body {
+  max-width: 42rem;
+  font-size: inherit;
+  line-height: 1.7;
+}
+
+.writing-post-page .writing-article-content {
+  max-width: 42rem;
+  margin-left: calc(12rem + 1.25rem);
+}
+
+.writing-post-page .writing-article-body p {
+  margin: 0 0 1.35em;
+}
+
+@media (max-width: 48em) {
+  .writing-page .page__title {
+    margin-left: 0;
+  }
+
+  .writing-page #writing-list-root {
+    margin-left: 0;
+  }
+
+  .writing-page .writing-year-group {
+    grid-template-columns: 1fr;
+    row-gap: 0.35em;
+  }
+
+  .writing-post-page .writing-article-meta {
+    margin-left: 0;
+  }
+
+  .writing-post-page .writing-article-content {
+    margin-left: 0;
+  }
 }
