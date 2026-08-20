@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Nikhil Reddy</title>
+    <link>https://nikhilreddy.com/</link>
+    <description>Updates from Nikhil Reddy</description>
+    <language>en-us</language>
+    <item>
+      <title>About Me</title>
+      <link>https://nikhilreddy.com/</link>
+      <description>About me</description>
+    </item>
+  </channel>
+</rss>
