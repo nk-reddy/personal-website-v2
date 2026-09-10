@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+export const prerender = true;
+
 type Book = { title: string; author?: string; url?: string };
 type FinishedBook = Book & { year: number };
 type ReadingList = { planned: Book[]; inProgress: Book[]; read: FinishedBook[] };

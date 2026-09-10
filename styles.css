@@ -20,6 +20,21 @@
   font-size: 1em;
 }
 
+.social-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.social-icon-linkedin { color: #007bb6; }
+.social-icon-github { color: #171516; }
+
+@media (max-width: 57.75em) {
+  .author__urls.author-urls-open { display: block; }
+}
+
 .site-footer p {
   display: inline;
   margin: 0 0 0 0.35em;
