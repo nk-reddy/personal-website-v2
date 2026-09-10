@@ -151,8 +151,7 @@ html[data-theme="dark"] .masthead {
     margin-right: 3.5rem; /* clears the 44px hamburger */
   }
 
-  /* Every page link lives in the dropdown on mobile (see layoutNav in
-     script.js), so give the panel a comfortable width and tap targets. */
+  /* Give the mobile navigation panel a comfortable width and tap targets. */
   .greedy-nav .hidden-links {
     min-width: 11rem;
     margin-top: 0.75rem;
@@ -162,6 +161,121 @@ html[data-theme="dark"] .masthead {
     padding: 0.75rem 1.25rem;
     font-size: 0.95em;
   }
+}
+
+/* Astro authoring experience: the layout remains deliberately restrained,
+   while Markdown and MDX get the typography expected of a long-form essay. */
+.site-menu nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 44px;
+}
+
+.site-name {
+  color: #494e52;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-links a {
+  color: #7a8288;
+  text-decoration: none;
+}
+
+.site-links a:hover,
+.site-name:hover {
+  color: #52adc8;
+}
+
+.writing-article-body :is(h2, h3, h4) {
+  margin-top: 2.25em;
+  color: #494e52;
+  line-height: 1.25;
+}
+
+.writing-article-body h2 { font-size: 1.45em; }
+.writing-article-body h3 { font-size: 1.15em; }
+.writing-article-body :is(ul, ol) { margin: 0 0 1.35em 1.25em; }
+.writing-article-body li { margin: 0.35em 0; }
+
+.writing-article-body blockquote {
+  margin: 1.75em 0;
+  padding-left: 1.25em;
+  border-left: 3px solid #52adc8;
+  color: #5c6369;
+  font-style: italic;
+}
+
+.writing-article-body :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  background: #f2f3f3;
+  font-size: 0.88em;
+}
+
+.writing-article-body pre {
+  overflow-x: auto;
+  margin: 1.75em 0;
+  padding: 1em 1.25em;
+  border-radius: 5px;
+  background: #282c34;
+  color: #f8f8f2;
+  font-size: 0.88em;
+}
+
+.writing-article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75em auto;
+}
+
+.writing-article-body table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  margin: 1.75em 0;
+  border-collapse: collapse;
+}
+
+.writing-article-body th,
+.writing-article-body td {
+  padding: 0.55em 0.7em;
+  border: 1px solid #d9dcde;
+  text-align: left;
+}
+
+.article-callout {
+  margin: 1.75em 0;
+  padding: 1em 1.25em;
+  border-left: 3px solid #52adc8;
+  background: #f5fafb;
+}
+
+.article-callout > div > :last-child { margin-bottom: 0; }
+
+html[data-theme="dark"] .site-name,
+html[data-theme="dark"] .writing-article-body :is(h2, h3, h4) { color: #d9dee1; }
+html[data-theme="dark"] .site-links { color: #aeb8bd; }
+html[data-theme="dark"] .writing-article-body blockquote { color: #b9c2c6; }
+html[data-theme="dark"] .writing-article-body :not(pre) > code { background: #343b40; }
+html[data-theme="dark"] .writing-article-body th,
+html[data-theme="dark"] .writing-article-body td { border-color: #4a545b; }
+html[data-theme="dark"] .article-callout { background: #293238; }
+
+#main:not(.layout-reading):not(.layout-writing) .page__content > h1 {
+  margin: 1.32em 0 0.5em;
+}
+
+@media (max-width: 48em) {
+  .site-menu nav { gap: 0.9rem; }
+  .site-links { gap: 0.9rem; }
 }
 
 /* The theme only ever styled this dropdown for light mode: the pointer arrow

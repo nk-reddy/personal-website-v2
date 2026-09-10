@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { cacheFor, getSubstackPosts } from "../../lib/substack";
+
+cacheFor(Astro);
+const posts = await getSubstackPosts();
+const post = posts.find((entry) => entry.slug === Astro.params.slug);
+if (!post) Astro.response.status = 404;
+const date = post?.publishedAt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+---
+
+<BaseLayout title={post?.title ?? "Post not found"} description={post?.description ?? "This Substack post could not be found."} canonical={post?.link}>
+  <main id="main" role="main" class="layout-writing"><article class="page writing-page writing-post-page"><div class="page__inner-wrap">
+    <header><h1 class="page__title"><a href="/writing" class="writing-back-link">&lt;&lt;</a></h1><p class="writing-article-meta">{date}</p></header>
+    <div class="writing-article-content"><section class="page__content writing-article-body">{post ? <><h1 class="writing-article-title">{post.title}</h1><div set:html={post.content} /></> : <><h1 class="writing-article-title">Post not found</h1><p>This post may be private, unpublished, or no longer available.</p></>}</section></div>
+  </div></article></main>
+</BaseLayout>

@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/reading.html", "destination": "/reading", "permanent": true },
+    { "source": "/writing.html", "destination": "/writing", "permanent": true },
+    { "source": "/feed.xml", "destination": "/rss.xml", "permanent": true }
+  ]
+}

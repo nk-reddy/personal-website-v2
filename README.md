@@ -1,19 +1,22 @@
+used codex to make personal website
+
 # Personal Website
 
-A responsive, text-first personal portfolio built with plain HTML, CSS, and JavaScript.
+An Astro site hosted on Vercel. Writing is mirrored from [Nikhil Reddy on Substack](https://reddynk.substack.com/); Substack is the only publishing interface.
 
-## Run locally
+## Publish an article
 
-Open `index.html` directly in a browser, or run a local static server using macOS's built-in Ruby:
+Write and publish in Substack. The Writing pages and `/rss.xml` read Substack's public feed directly and cache the result for up to 15 minutes. No local Markdown file, commit, or Vercel deployment is needed for a new article.
+
+## Update reading
+
+Edit `src/content/reading.yaml`. Each item is a title with optional author, URL, and (for finished books) year. The reading page groups completed books by year.
+
+## Develop locally
 
 ```sh
-ruby -run -e httpd . -p 8000
+npm install
+npm run dev
 ```
 
-Then visit `http://localhost:8000`. Press `Ctrl+C` to stop the server.
-
-Alternatively, if your Python installation is working, use `python3 -m http.server 8000`.
-
-## Customize
-
-Update the biography, project links, email address, and social links in `index.html`. Site colors and typography are defined as CSS custom properties at the top of `styles.css`.
+Run `npm run build` before pushing when you want to verify the production build.

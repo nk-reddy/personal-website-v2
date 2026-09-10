@@ -1,0 +1,57 @@
+---
+import Header from "../components/Header.astro";
+import "../../styles.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { title = "Nikhil Reddy", description = "Nikhil Reddy's personal site", canonical } = Astro.props;
+const pageTitle = title === "Nikhil Reddy" ? title : `${title} — Nikhil Reddy`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, "https://www.nikhilreddy.com").href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content="NIKHIL REDDY" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title="Nikhil Reddy" href="/rss.xml" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem("personal-website-theme") === "dark" ? "dark" : "light";
+      } catch { document.documentElement.dataset.theme = "light"; }
+    </script>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <script is:inline src="/js/main.min.js"></script>
+    <script is:inline>
+      const key = "personal-website-theme";
+      const button = document.querySelector(".theme-toggle");
+      const apply = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        const dark = theme === "dark";
+        button.textContent = dark ? "light" : "dark";
+        button.setAttribute("aria-pressed", String(dark));
+        button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      };
+      apply(document.documentElement.dataset.theme);
+      button?.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        try { localStorage.setItem(key, next); } catch {}
+        apply(next);
+      });
+    </script>
+  </body>
+</html>

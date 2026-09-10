@@ -1,0 +1,63 @@
+- id: reading
+  planned:
+    - title: The Remains of the Day
+      author: Kazuo Ishiguro
+    - title: The Power Law
+      author: Sebastian Mallaby
+    - title: The Sirens of Titan
+      author: Kurt Vonnegut
+  inProgress:
+    - title: What is Intelligence?
+      author: Blaise Agüera y Arcas
+  read:
+    - title: Linear Algebra Done Right
+      author: Sheldon Axler
+      year: 2026
+    - title: "Flatland: A Romance of Many Dimensions"
+      author: Edwin Abbott
+      year: 2026
+    - title: Metamorphosis
+      author: Franz Kafka
+      year: 2026
+    - title: Math Without Numbers
+      author: Milo Beckman
+      year: 2026
+    - title: A Little History of Economics
+      author: Niall Kishtainy
+      year: 2026
+    - title: How the Internet Really Works
+      author: No Starch Press
+      year: 2026
+    - title: Martyr!
+      author: Kaveh Abkar
+      year: 2026
+    - title: The Infinity Machine
+      author: Sebastian Mallaby
+      year: 2026
+    - title: The Financial Restructuring Tool Set
+      author: Mike Harmon
+      year: 2026
+    - title: Chip War
+      author: Chris Miller
+      year: 2026
+    - title: A Brief History of Intelligence
+      author: Max Bennett
+      year: 2026
+    - title: Margin of Safety
+      author: Seth Klarman
+      year: 2025
+    - title: Distressed Debt Analysis
+      author: Stephen Moyer
+      year: 2025
+    - title: Investment Banking
+      author: Joshua Pearl & Joshua Rosenbaum
+      year: 2025
+    - title: The Caesar's Palace Coup
+      author: Max Frumes & Sujeet Indap
+      year: 2025
+    - title: The Credit Investor's Handbook
+      author: Michael Gatto
+      year: 2025
+    - title: What Hedge Funds Really Do
+      author: Philip Romero & Tucker Balch
+      year: 2025

@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+type Book = { title: string; author?: string; url?: string };
+type FinishedBook = Book & { year: number };
+type ReadingList = { planned: Book[]; inProgress: Book[]; read: FinishedBook[] };
+
+const [entry] = await getCollection("reading");
+if (!entry) throw new Error("Reading list is missing.");
+const list = entry.data as ReadingList;
+const years = [...new Set(list.read.map((book) => book.year))].sort((a, b) => b - a);
+const label = (book: Book) => book.author ? `${book.title} (${book.author})` : book.title;
+---
+
+<BaseLayout title="Reading" description="What Nikhil is reading">
+  <main id="main" role="main" class="layout-reading">
+    <article class="page reading-page"><div class="page__inner-wrap">
+      <header><h1 class="page__title"><a href="/" class="reading-back-link">&lt;&lt;</a></h1></header>
+      <div id="reading-list-root">
+        <section class="reading-section"><h2 class="reading-section-label">[planned]</h2><ul class="reading-items">{list.planned.map((book) => <li>{book.url ? <a href={book.url}>{label(book)}</a> : label(book)}</li>)}</ul></section>
+        <section class="reading-section"><h2 class="reading-section-label">[in progress]</h2><ul class="reading-items">{list.inProgress.map((book) => <li>{book.url ? <a href={book.url}>{label(book)}</a> : label(book)}</li>)}</ul></section>
+        <section class="reading-section read-section"><h2 class="reading-section-label">[read]</h2><div class="read-groups">{years.map((year) => <section class="read-year-group"><h3 class="read-year-heading">'{String(year).slice(-2)}</h3><ul class="read-year-items">{list.read.filter((book) => book.year === year).map((book) => <li>{book.url ? <a href={book.url}>{label(book)}</a> : label(book)}</li>)}</ul></section>)}</div></section>
+      </div>
+    </div></article>
+  </main>
+</BaseLayout>
