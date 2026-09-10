@@ -10,9 +10,9 @@ const years = [...new Set(posts.map((post) => post.publishedAt.getUTCFullYear())
 
 <BaseLayout title="Writing" description="Essays and notes by Nikhil Reddy">
   <main id="main" role="main" class="layout-writing"><article class="page writing-page"><div class="page__inner-wrap">
-    <header><h1 class="page__title"><a href="/" class="writing-back-link">&lt;&lt;</a></h1></header>
+    <header><h1 class="page__title"><a href="/" class="writing-back-link" data-astro-prefetch>&lt;&lt;</a></h1></header>
     <div id="writing-list-root">
-      {posts.length ? years.map((year) => <section class="writing-year-group"><h2 class="writing-year-heading">'{String(year).slice(-2)}</h2><ul class="writing-items">{posts.filter((post) => post.publishedAt.getUTCFullYear() === year).map((post) => <li>{post.title} [<a href={`/writing/${post.slug}/`}>link</a>]</li>)}</ul></section>) : <p>Writing is temporarily unavailable. Please try again shortly.</p>}
+      {posts.length ? years.map((year) => <section class="writing-year-group"><h2 class="writing-year-heading">'{String(year).slice(-2)}</h2><ul class="writing-items">{posts.filter((post) => post.publishedAt.getUTCFullYear() === year).map((post) => <li>{post.title} [<a href={`/writing/${post.slug}/`} data-astro-prefetch>link</a>]</li>)}</ul></section>) : <p>Writing is temporarily unavailable. Please try again shortly.</p>}
     </div>
   </div></article></main>
 </BaseLayout>

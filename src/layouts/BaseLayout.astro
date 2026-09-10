@@ -10,7 +10,7 @@ interface Props {
 
 const { title = "Nikhil Reddy", description = "Nikhil Reddy's personal site", canonical } = Astro.props;
 const pageTitle = title === "Nikhil Reddy" ? title : `${title} — Nikhil Reddy`;
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, "https://www.nikhilreddy.com").href;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, "https://www.nikreddy.com").href;
 ---
 
 <!doctype html>

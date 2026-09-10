@@ -5,5 +5,8 @@ export default defineConfig({
   site: "https://www.nikreddy.com",
   output: "server",
   adapter: vercel(),
+  prefetch: {
+    defaultStrategy: "hover"
+  },
   publicDir: "./assets"
 });
