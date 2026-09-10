@@ -2,7 +2,7 @@ used codex to make personal website
 
 # Personal Website
 
-An Astro site hosted on Vercel. Writing is mirrored from [Nikhil Reddy on Substack](https://reddynk.substack.com/); Substack is the only publishing interface.
+An Astro site hosted on Vercel. Writing is mirrored from Substack, which is the only publishing interface.
 
 ## Publish an article
 
